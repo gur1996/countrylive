@@ -4,8 +4,8 @@ import {Image} from 'react-native-animatable';
 
 const Card = ({item, navigation}) => {
   const handleReadMore = () => {
-    const url = item.url; 
-    navigation.navigate('WebView', { url });
+    const url = item.url;
+    navigation.navigate('NewsViewr', {url});
   };
   return (
     <View style={styles.container}>
@@ -22,12 +22,14 @@ const Card = ({item, navigation}) => {
       <View style={styles.details}>
         <Text style={styles.publishedate}>
           Publish Date:
-          {item.publishedAt.toLocaleString('en-GB', {timeZone: 'UTC'})}
+          {item.publishedAt.toLocaleString('en-GB', { timeZone: 'UTC' })}
         </Text>
-        <Text style={styles.author}>{item.author}</Text>
+        <Text style={styles.author}>
+          {item.author ? <Text style={styles.boldText}>Author: </Text> : null}
+          {item.author}
+        </Text>
       </View>
-      <TouchableOpacity
-        style={styles.btn} onPress={handleReadMore}  >
+      <TouchableOpacity style={styles.btn} onPress={handleReadMore}>
         <Text style={styles.btntext}>Read More</Text>
       </TouchableOpacity>
       <View style={styles.source}>
@@ -43,6 +45,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    gap: 5,
+  },
+  boldText: {
+    fontWeight: 'bold',
   },
   img: {
     width: '100%',
@@ -53,10 +59,12 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 10,
     fontSize: 14,
+    fontWeight: '600',
     color: 'black',
   },
   description: {
     fontSize: 12,
+    color: '#6e6e6e',
   },
   author: {
     fontSize: 10,
@@ -64,6 +72,7 @@ const styles = StyleSheet.create({
   },
   publishedate: {
     fontSize: 10,
+    color: 'black',
   },
 
   details: {
@@ -79,6 +88,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: '#FF3A3A',
     borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   sourcetext: {
     color: 'white',
