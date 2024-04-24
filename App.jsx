@@ -8,6 +8,7 @@ import NewsViewr from './src/components/NewsViewr';
 import Search from './src/components/Search';
 
 const App = () => {
+  console.log("new ")
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
